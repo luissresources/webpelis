@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# WebPelis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Html Template adapted for React JS
 
 ## Available Scripts
 

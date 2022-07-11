@@ -1,11 +1,15 @@
 import React from 'react';
 import PageWrapper from './components/PageWrapper';
 import CardMovie from './components/CardMovie';
+import filmsJson from './films.json';
 import './App.css';
+import Pagination from './components/Pagination';
 
 function App() {
 
-  let films = [
+  let films = filmsJson;
+
+  /* let films = [
     {
       image: 'images/uploads/mv1.jpg',
       title: 'Oblivion',
@@ -29,7 +33,7 @@ function App() {
       describe: 'Earth\'s mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...'
     }
   ];
-
+ */
   return (
     <div className="App">
       <PageWrapper>
@@ -47,6 +51,7 @@ function App() {
               >{film.describe}</CardMovie>
            )
         }
+      <Pagination page={2} totalPage={4} onChangePage={() => console.log('onChange')} />
         
       </PageWrapper>
     </div>

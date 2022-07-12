@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useLayoutEffect} from 'react';
 import PageWrapper from './components/PageWrapper';
 import CardMovie from './components/CardMovie';
 import filmsJson from './films.json';
@@ -8,27 +8,20 @@ import Pagination from './components/Pagination';
 function App() {
 
   const [currentPage, setCurrentPage] = useState(1);
-  let [films, setFilms] = useState([]);
+  const [films, setFilms] = useState([]);
+  // let totalPerPageTemp = 2;
+  const [totalPerPage, setTotalPerPage] = useState(5);
 
-  // let films = filmsJson;
 
-/*   const searchFilms = async () => {
-    let url = 'https://lucasmoy.dev/data/react/peliculas.json';
-    let response = await fetch(url, {
-      "method": 'GET',
-      "mode": 'no-cors',
-      "headers": {
-        "Accept": 'application/json',
-        "Content-Type": 'application/json',
-        "Access-Control-Allow-Origin": 'https://lucasmoy.dev'
-      }
-    });
+  useEffect(()=> {
+    searchFilms();
+  }, []);
 
-    let result = await response.json();
-    return alert(result);
-    // setFilms(result);
-  }
- */
+  useEffect(()=>{
+    searchFilms();
+  },[totalPerPage]);
+
+  useEffect(()=> {searchFilms()},[totalPerPage]);
 
   async function searchFilms() {
     let url = 'https://raw.githubusercontent.com/luissresources/webpelis/main/src/films.json';
@@ -37,26 +30,18 @@ function App() {
       .then (data => setFilms(data));
   }
 
-  searchFilms();
-
-
-  let totalPerPage = 1;
-  const loadFilms = () => {
-    return films = films.slice((currentPage - 1) * totalPerPage, currentPage * totalPerPage);
-  }
-  
   const countPages = () => {
     let amountFilms = filmsJson.length;
     return Math.ceil( amountFilms / totalPerPage);
   }
 
-  loadFilms();
+  const loadFilms = films.slice((currentPage - 1) * totalPerPage, currentPage * totalPerPage);
   
   return (
     <div className="App">
       <PageWrapper>
         {
-          films.map((film) => 
+          loadFilms.map((film) => 
             <CardMovie 
               image={film.image}
               title={film.title} 
@@ -74,7 +59,11 @@ function App() {
         totalPage={countPages()} 
         onChangePage={(page) => {
           setCurrentPage(page);
-        }} />
+        }}
+        onChangePagination={(selectValue) => {
+          setTotalPerPage(selectValue.target.value);
+        }}
+        />
       </PageWrapper>
     </div>
   );

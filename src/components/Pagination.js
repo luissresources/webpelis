@@ -18,6 +18,11 @@ function Pagination(props) {
   return (
     <div className="topbar-filter">
       <div className="pagination2">
+      <label>Movies per page:</label>
+        <select defaultValue='5' id="select-pagination" onChange={props.onChangePagination}> 
+          <option value="5">5 Movies</option>
+          <option value="10">10 Movies</option>
+        </select>
         <span>Page {props.page} of {props.totalPage}:</span>
 
         {getPages()}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PageWrapper from './components/PageWrapper';
 import CardMovie from './components/CardMovie';
 import filmsJson from './films.json';
@@ -7,36 +7,44 @@ import Pagination from './components/Pagination';
 
 function App() {
 
+  const [currentPage, setCurrentPage] = useState(1);
+  // const [jsonFilms, setJsonFilms] = useState([]);
+
   let films = filmsJson;
 
-  /* let films = [
-    {
-      image: 'images/uploads/mv1.jpg',
-      title: 'Oblivion',
-      year: '2012',
-      rate: '8.1',
-      duration: '2h21\'',
-      date: '1 May 2015',
-      director: 'Joss Whedon',
-      starts: 'Robert Downey Jr, Chris Evans, Chris Hemsworth. ',
-      describe: 'Earth\'s mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...'
-    },
-    {
-      image: 'images/uploads/mv1.jpg',
-      title: 'Oblivion',
-      year: '2012',
-      rate: '8.1',
-      duration: '2h21\'',
-      date: '1 May 2015',
-      director: 'Joss Whedon',
-      starts: 'Robert Downey Jr, Chris Evans, Chris Hemsworth. ',
-      describe: 'Earth\'s mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...'
-    }
-  ];
- */
+  /* const searchFilms = async () => {
+    let url = 'https://lucasmoy.dev/data/react/peliculas.json';
+    let response = await fetch(url, {
+      "method": 'GET',
+      "mode": 'no-cors',
+      "headers": {
+        "Accept": 'application/json',
+        "Content-Type": 'application/json',
+      }
+    });
+
+    let result = await response.json();
+    setJsonFilms(result);
+  } */
+
+  // searchFilms();
+
+  let totalPerPage = 7;
+  const loadFilms = () => {
+    return films = films.slice((currentPage - 1) * totalPerPage, currentPage * totalPerPage);
+  }
+  
+  const countPages = () => {
+    let amountFilms = filmsJson.length;
+    return Math.ceil( amountFilms / totalPerPage);
+  }
+
+  loadFilms();
+  
   return (
     <div className="App">
       <PageWrapper>
+      {/* <button onClick={searchFilms}>Test Json</button> */}
         {
           films.map((film) => 
             <CardMovie 
@@ -51,8 +59,12 @@ function App() {
               >{film.describe}</CardMovie>
            )
         }
-      <Pagination page={2} totalPage={4} onChangePage={() => console.log('onChange')} />
-        
+      <Pagination 
+        page={currentPage} 
+        totalPage={countPages()} 
+        onChangePage={(page) => {
+          setCurrentPage(page);
+        }} />
       </PageWrapper>
     </div>
   );

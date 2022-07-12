@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/Pagination.css';
 
 function Pagination(props) {
 
@@ -9,7 +10,7 @@ function Pagination(props) {
       result.push(
       <a 
         onClick={() => props.onChangePage(page)}
-        className={props.page === page ? 'active' : ''}>{page}</a>);
+        className={props.page === page ? 'active' : ''} id='item-pagination'>{page}</a>);
     };
     return result;
   }

@@ -106,31 +106,14 @@ const PageWrapper = (props) => {
                     <a href="#page-top"></a>
                   </li>
                   <li className="dropdown first">
-                    <a className="btn btn-default dropdown-toggle lv1" data-toggle="dropdown">
+                    <a href="/" className="btn btn-default lv1">
                     Home <i className="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
-                    <ul className="dropdown-menu level1">
-                      <li><a href="index-2.html">Home 01</a></li>
-                      <li><a href="homev2.html">Home 02</a></li>
-                      <li><a href="homev3.html">Home 03</a></li>
-                    </ul>
                   </li>
                   <li className="dropdown first">
-                    <a className="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-                    movies<i className="fa fa-angle-down" aria-hidden="true"></i>
+                    <a href='/blog' className="btn btn-default lv1">
+                    Blog
                     </a>
-                    <ul className="dropdown-menu level1">
-                      <li className="dropdown">
-                        <a href="localhost" className="dropdown-toggle" data-toggle="dropdown" >Movie grid<i className="ion-ios-arrow-forward"></i></a>
-                        <ul className="dropdown-menu level2">
-                          <li><a href="moviegrid.html">Movie grid</a></li>
-                          <li><a href="moviegridfw.html">movie grid full width</a></li>
-                        </ul>
-                      </li>			
-                      <li><a href="movielist.html">Movie list</a></li>
-                      <li><a href="moviesingle.html">Movie single</a></li>
-                      <li className="it-last"><a href="seriessingle.html">Series single</a></li>
-                    </ul>
                   </li>
                   <li className="dropdown first">
                     <a className="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
@@ -198,10 +181,10 @@ const PageWrapper = (props) => {
           <div className="row">
             <div className="col-md-12">
               <div className="hero-ct">
-                <h1> movie listing - list</h1>
+                <h1> blog listing - list</h1>
                 <ul className="breadcumb">
                   <li className="active"><a href="localhost">Home</a></li>
-                  <li> <span className="ion-ios-arrow-right"></span> movie listing</li>
+                  <li> <span className="ion-ios-arrow-right"></span> blog listing</li>
                 </ul>
               </div>
             </div>

@@ -2,17 +2,17 @@ import React from 'react';
 
 function CardMovie(props) {
   return (
-    <div class="movie-item-style-2">
+    <div className="movie-item-style-2">
       <img src={props.image} alt="" />
-      <div class="mv-item-infor">
+      <div className="mv-item-infor">
         <h6>
           <a href="moviesingle.html">{props.title} <span>({props.year})</span></a>
         </h6>
-        <p class="rate"><i class="ion-android-star"></i><span>{props.rate}</span> /10</p>
-        <p class="describe">
+        <p className="rate"><i className="ion-android-star"></i><span>{props.rate}</span> /10</p>
+        <p className="describe">
           {props.children}
         </p>
-        <p class="run-time">
+        <p className="run-time">
           Run Time: {props.duration} . <span>MMPA: PG-13 </span> .
           <span>Release: {props.date}</span>
         </p>
